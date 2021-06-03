@@ -1,0 +1,13 @@
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\AlgoTrading.exe
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\AlgoTrading.deps.json
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\AlgoTrading.runtimeconfig.json
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\AlgoTrading.runtimeconfig.dev.json
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\AlgoTrading.dll
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\AlgoTrading.pdb
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.csprojAssemblyReference.cache
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.AssemblyInfoInputs.cache
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.AssemblyInfo.cs
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.csproj.CoreCompileInputs.cache
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.dll
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.pdb
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.genruntimeconfig.cache
