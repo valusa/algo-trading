@@ -8,32 +8,43 @@ namespace AlgoTrading {
     class Program {
         static void Main(string[] args) {
 
-            Console.Write("Starting Process");
+            Console.Write("Enter a year - ");
+            string yearChosen = Console.ReadLine();
+
+            if (yearChosen == string.Empty) return;
             string path = @"E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\data.csv";
-            DataTable dataTable = ConvertCSVtoDataTable(path);
-            dataTable = dataTable.Rows
-                        .Cast<DataRow>()
-                        .Where(row => !row.ItemArray.All(field => field is DBNull ||
-                                                         string.IsNullOrWhiteSpace(field as string)))
-                        .CopyToDataTable();
+            DataView dvData = ConvertToDataView(yearChosen, ConvertCSVtoDataTable(path));
 
-            var dvData = new DataView(dataTable);
             int count = dvData.Count;
-
             decimal maxProfit = 0;
 
             for (int i = count - 1; i > 0; i--) {
-                
+                decimal open = Decimal.Parse(dvData[i]["Open"].ToString(), NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
                 decimal close = Decimal.Parse(dvData[i]["Close/Last"].ToString(), NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
-                decimal opening = Decimal.Parse(dvData[i - 1]["Close/Last"].ToString(), NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
-
-                if (opening < close) {
-                    maxProfit += (close - opening);
+                decimal nextDayOpen = Decimal.Parse(dvData[i - 1]["Close/Last"].ToString(), NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
+                // lets say if the stock opens at $5 and closes at $6, buy it at $6 and sell it next day
+                // lets say if the stock opens at $5 and closes at $4 then do nothing
+                if (open <= close) {
+                    maxProfit += (close - nextDayOpen);
                 }
             }
 
             Console.Write("Max Profit: " + maxProfit.ToString("C"));
 
+        }
+
+        private static DataView ConvertToDataView(string yearChosen, DataTable dataTable) {
+            dataTable = dataTable.Rows
+                                    .Cast<DataRow>()
+                                    .Where(row => !row.ItemArray.All(field => field is DBNull ||
+                                                                     string.IsNullOrWhiteSpace(field as string)))
+                                    .CopyToDataTable();
+
+            var dvData = new DataView(dataTable) {
+                RowFilter = "(Convert(Date,System.String) like '%" + yearChosen + "%')",
+                Sort = "Date"
+            };
+            return dvData;
         }
 
         public static DataTable ConvertCSVtoDataTable(string strFilePath) {
