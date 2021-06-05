@@ -11,3 +11,5 @@ E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1
 E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.dll
 E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.pdb
 E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.genruntimeconfig.cache
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\bin\Debug\netcoreapp3.1\ConsoleTables.dll
+E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\obj\Debug\netcoreapp3.1\AlgoTrading.csproj.CopyComplete

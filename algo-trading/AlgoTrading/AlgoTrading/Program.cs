@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using AlgoTrading.Calculator;
+using ConsoleTables;
 
 namespace AlgoTrading {
     class Program {
@@ -12,11 +15,17 @@ namespace AlgoTrading {
             string yearChosen = Console.ReadLine();
 
             if (yearChosen == string.Empty) return;
-            string path = @"E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\data.csv";
+            string path = @"E:\E Drive\Projects\algo-trading\AlgoTrading\AlgoTrading\msft.csv";
             DataView dvData = ConvertToDataView(yearChosen, ConvertCSVtoDataTable(path));
 
             int count = dvData.Count;
             decimal maxProfit = 0;
+
+
+            var nineDaySMACalculator = new SimpleMovingAverage(k: 9);
+            var eighteenDaySMACalculator = new SimpleMovingAverage(k: 18);
+            var table = new ConsoleTable("Date", "Open Price", "Close Price", "Max Profit", "9 Day SMA", "18 day SMA", "BUY/SELL");
+
 
             for (int i = count - 1; i > 0; i--) {
                 decimal open = Decimal.Parse(dvData[i]["Open"].ToString(), NumberStyles.AllowCurrencySymbol | NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, new CultureInfo("en-US"));
@@ -30,11 +39,17 @@ namespace AlgoTrading {
                 else {
                     maxProfit += (nextDayOpen - close);
                 }
+                decimal nineDaySMA = Math.Round(nineDaySMACalculator.Update(open), 3);
+                decimal eighteenDaySMA = Math.Round(eighteenDaySMACalculator.Update(open), 3);
+                bool isBuy = nineDaySMA > eighteenDaySMA;
+                table.AddRow(dvData[i]["Date"].ToString(), dvData[i]["Open"].ToString(), dvData[i]["Close/Last"].ToString(), maxProfit.ToString("C") , nineDaySMA, eighteenDaySMA, isBuy ? "BUY" : "SELL");
             }
 
-            Console.Write("Max Profit: " + maxProfit.ToString("C"));
+            // Console.Write("Max Profit: " + maxProfit.ToString("C"));
+            Console.Write(table);
 
         }
+
 
         private static DataView ConvertToDataView(string yearChosen, DataTable dataTable) {
             dataTable = dataTable.Rows
