@@ -27,6 +27,9 @@ namespace AlgoTrading {
                 if (open <= close) {
                     maxProfit += (close - nextDayOpen);
                 }
+                else {
+                    maxProfit += (nextDayOpen - close);
+                }
             }
 
             Console.Write("Max Profit: " + maxProfit.ToString("C"));
